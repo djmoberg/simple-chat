@@ -13,7 +13,7 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Money Manager - Register"),
+          title: Text("Register"),
         ),
         body: MyCustomForm());
   }
@@ -100,10 +100,16 @@ class MyCustomFormState extends State<MyCustomForm> {
                               final firebaseUser = await FirebaseAuth.instance
                                   .createUserWithEmailAndPassword(
                                       email: _username, password: _password);
-                              Firestore.instance
+                              await Firestore.instance
                                   .collection('users')
                                   .document(firebaseUser.uid)
-                                  .setData({"displayName": _username, "chatRooms": []});
+                                  .setData({
+                                "displayName": _username,
+                                "chatRooms": []
+                              });
+                              UserUpdateInfo upi = UserUpdateInfo();
+                              upi.displayName = "Djmoberg";
+                              await FirebaseAuth.instance.updateProfile(upi);
                               Navigator.pop(context);
                             } catch (e) {
                               Scaffold.of(context).showSnackBar(SnackBar(

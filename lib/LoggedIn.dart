@@ -49,7 +49,7 @@ class LoggedIn extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
                         Text(
-                          snapshot.data['displayName'],
+                          _user.displayName,
                           style: Theme.of(context).textTheme.headline,
                         ),
                         Text(
