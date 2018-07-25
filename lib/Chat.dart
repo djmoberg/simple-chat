@@ -72,8 +72,8 @@ class _MyChatState extends State<MyChat> {
 
   Widget _myListTile(BuildContext context, index, document) {
     if (Map<String, dynamic>.from(List.from(document['messages'])[index])[
-            'user'] ==
-        _user.uid)
+            'displayName'] ==
+        _user.displayName)
       return ListTile(
         // title: _getDisplayName(context, index, document),
         trailing: _getMessage(context, index, document, true),
@@ -134,7 +134,7 @@ class _MyChatState extends State<MyChat> {
                             List<dynamic> newList =
                                 List.from(freshSnap['messages']);
                             newList.add({
-                              'displayName': "Daniel Moberg",
+                              'displayName': _user.displayName,
                               'user': _user.uid,
                               'value': _newMessage
                             });

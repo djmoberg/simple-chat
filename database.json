@@ -1,0 +1,18 @@
+{
+    "chatRooms": {
+        "messages": [
+            {
+                "displayName": "String",
+                "user": "String",
+                "value": "String"
+            }
+        ],
+        "title": "String"
+    },
+    "users": {
+        "chatRooms": [
+            "String"
+        ],
+        "dispalyName": "String"
+    }
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:simple_chat/tabViews/ChatRooms.dart';
+import 'package:simple_chat/NewChat.dart';
 
 import 'package:firebase_auth/firebase_auth.dart'
     show FirebaseAuth, FirebaseUser;
@@ -26,7 +27,10 @@ class LoggedIn extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NewChat(_user)));
+          },
           child: Icon(Icons.message),
         ),
         drawer: Drawer(

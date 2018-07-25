@@ -10,6 +10,15 @@ class ChatRooms extends StatelessWidget {
 
   ChatRooms(this._user);
 
+  String _lastMessage(snapshot) {
+    if (snapshot.data['messages'].length == 0) {
+      return "";
+    } else {
+      return Map<String, dynamic>.from(List.from(snapshot.data['messages'])[
+          snapshot.data['messages'].length - 1])['value'];
+    }
+  }
+
   Widget _chatRoomList(BuildContext context, DocumentSnapshot document) {
     return ListView.builder(
       itemExtent: 80.0,
@@ -27,7 +36,10 @@ class ChatRooms extends StatelessWidget {
               return ListTile(
                 onTap: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Chat(document['chatRooms'][index], _user)));
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Chat(document['chatRooms'][index], _user)));
                 },
                 leading: Icon(Icons.portrait),
                 // leading: Container(
@@ -50,10 +62,7 @@ class ChatRooms extends StatelessWidget {
                       style: Theme.of(context).textTheme.body2,
                     ),
                     Text(
-                      "Du: " +
-                          Map<String, dynamic>.from(List
-                                  .from(snapshot.data['messages'])[
-                              snapshot.data['messages'].length - 1])['value'],
+                      "Du: " + _lastMessage(snapshot),
                       style: Theme.of(context).textTheme.body1,
                     )
                   ],
